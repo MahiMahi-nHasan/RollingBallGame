@@ -6,6 +6,8 @@ public class RandomMove : MonoBehaviour
 {
     public float speed = 2f;
     public float rangeX = 5f, rangeZ = 5f;
+    private SceneControl sc;
+    public ParticleSystem deathParticles;
 
     Vector3 dir;
     float t;
@@ -14,6 +16,7 @@ public class RandomMove : MonoBehaviour
     void Start()
     {
         PickDirection();
+        sc = FindObjectOfType<SceneControl>();
     }
 
     // Update is called once per frame
@@ -38,17 +41,13 @@ public class RandomMove : MonoBehaviour
     public void Kill()
     {
         enabled = false;
+        Collider col = GetComponent<Collider>();
+        col.enabled = false;
+        
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
 
-        // Apply knockback
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            Vector3 knockbackDir = (-dir).normalized;
-            float knockbackForce = 120f;
-            rb.AddForce(knockbackDir * knockbackForce);
-        }
-        Destroy(gameObject, 1f);
-
+        Destroy(gameObject);
+        sc.onSlimeKill();
     }
 
 }
