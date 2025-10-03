@@ -5,7 +5,7 @@ using UnityEngine;
 public class RandomMove : MonoBehaviour
 {
     public float speed = 2f;
-    public float rangeX = 5f, rangeZ = 5f;
+    public float rangeX = 45f, rangeZ = 45f;
     private SceneControl sc;
     public ParticleSystem deathParticles;
 

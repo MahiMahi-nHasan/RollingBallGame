@@ -8,13 +8,21 @@ public class SceneControl : MonoBehaviour
 {
     public Transform player;
     public TextMeshProUGUI scoreText;
+    public GameObject slimeFab;
+    public GameObject win;
 
     private int score = 0;
-    private int totalSlime = 0;
+    [SerializeField] private int totalSlime;
     void Start()
     {
-        totalSlime = GameObject.FindGameObjectsWithTag("Collectible").Length;
+        for (int i = 0; i < totalSlime; i++)
+        {
+            Vector3 randomPos = new Vector3(Random.Range(-45, 45), 0f, Random.Range(-45, 45));
+            Instantiate(slimeFab, randomPos, Quaternion.identity, transform);
+        }
         Time.timeScale = 1f;
+        scoreText.enabled = true;
+        win.SetActive(false);
         updateScore();
     }
 
@@ -47,6 +55,8 @@ public class SceneControl : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        //Time.timeScale = 0f;
+        scoreText.enabled = false;
+        win.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
