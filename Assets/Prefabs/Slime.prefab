@@ -76,8 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  rangeX: 5
-  rangeZ: 5
+  rangeX: 45
+  rangeZ: 45
   deathParticles: {fileID: 3043666200455429562, guid: a027fb139c5c75f4ba13e3b3f02b144c, type: 3}
 --- !u!65 &2026027231252545643
 BoxCollider:
